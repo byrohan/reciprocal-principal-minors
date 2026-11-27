@@ -2,6 +2,8 @@
 
 An invertible matrix and its inverse can agree on the determinant of **every corresponding principal submatrix**, even though no rescaling of the coordinates turns one matrix, or its transpose, into the other. This disproves Sebastian Schlecht’s 2016 real-matrix conjecture. The examples also disprove **Theorem 7 of the published Schlecht–Habets paper**, which makes a related assertion for complex matrices. [Original question](https://mathoverflow.net/q/235344) · [IEEE article, p. 1558](https://doi.org/10.1109/TSP.2016.2637323)
 
+**Review status.** This is an AI-generated, unrefereed research manuscript. Lean 4 checks explicit counterexamples to the formal statements. Matching the formal hypotheses to the published theorem is a separate step readers can audit. [Lean proof for Theorem 7](ReciprocalMinors/Five.lean) · [Claim-by-claim verification](docs/verification.md) · [Left to Solve statement review](https://github.com/GuillaumeBAUD-coder/open-math-agents/pull/3755)
+
 [Read the paper (PDF)](paper/manuscript.pdf) · [Editable manuscript](paper/manuscript.html) · [Verification report](docs/verification.md) · [Historical assessment](docs/history.md)
 
 ## A counterexample you can check by hand
@@ -28,7 +30,7 @@ The published Appendix B drops a rank condition, applies induction to principal 
 
 ## Reproduce
 
-Clone the repository, or download and extract the source ZIP from GitHub’s **Code** menu. While the repository is private, use a GitHub account with read access for either route.
+Clone the repository, or download and extract the source ZIP from GitHub’s **Code** menu.
 
 ```sh
 git clone https://github.com/byrohan/reciprocal-principal-minors.git
