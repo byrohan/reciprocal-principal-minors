@@ -4,6 +4,7 @@ import argparse
 import csv
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -18,14 +19,23 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--record", action="store_true", help="write the reference receipt from a completed run")
     args = parser.parse_args()
-    parts = ["ReciprocalMinors", "scripts", "verification/expected"]
-    files = [ROOT / x for x in ("lakefile.toml", "lake-manifest.json", "lean-toolchain",
-                                "ReciprocalMinors.lean", "verification/Axioms.lean",
-                                "paper/manuscript.html", ".github/workflows/verify.yml")]
-    for folder in parts:
-        files.extend(p for p in (ROOT / folder).iterdir() if p.is_file())
-    hashes = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in sorted(files)}
+    reference = ROOT / "verification/release.json"
+    if args.record:
+        # Maintainers record only version-controlled inputs. Reader verification
+        # uses the published inventory, including in a source ZIP without Git.
+        sources = ["ReciprocalMinors", "scripts", "verification/expected", "lakefile.toml",
+                   "lake-manifest.json", "lean-toolchain", "ReciprocalMinors.lean",
+                   "verification/Axioms.lean", "paper/manuscript.html", ".github/workflows/verify.yml"]
+        tracked = subprocess.check_output(["git", "ls-files", "-z", "--", *sources], cwd=ROOT)
+        paths = [name.decode() for name in tracked.split(b"\0") if name]
+    else:
+        paths = read(reference)["source_sha256"]
+    hashes = {}
+    for name in sorted(paths):
+        path = ROOT / name
+        if not path.is_file():
+            raise SystemExit(f"Missing verification input: {name}")
+        hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
     proof = read(RUN / "checker" / "proofs.json")
     stmt = read(RUN / "checker" / "statements.json")
     with (RUN / "exact" / "all-minors.csv").open(newline="") as f:
@@ -45,7 +55,6 @@ def main():
     }
     result = json.dumps(receipt, indent=2, sort_keys=True) + "\n"
     (RUN / "receipt.json").write_text(result)
-    reference = ROOT / "verification/release.json"
     if args.record:
         reference.write_text(result)
     if read(reference) != receipt:

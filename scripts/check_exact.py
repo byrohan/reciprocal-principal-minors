@@ -25,8 +25,13 @@ def main():
         if filename == "independent.json":
             print(result.pop("implementation"))
         (output / filename).write_text(json.dumps(result, indent=2) + "\n")
-    for reference in sorted(EXPECTED.iterdir()):
-        actual = output / reference.name
+    records = ["all-minors.csv", "certificates.json", "four-complex.json", "small-order-search.json"]
+    records.extend(filename for _, filename in programs)
+    for name in records:
+        reference = EXPECTED / name
+        if not reference.is_file():
+            raise SystemExit(f"Missing published reference: verification/expected/{name}")
+        actual = output / name
         if reference.suffix == ".csv":
             with reference.open(newline="") as a, actual.open(newline="") as b:
                 matches = list(csv.reader(a)) == list(csv.reader(b))
@@ -34,7 +39,7 @@ def main():
             matches = json.loads(actual.read_text()) == json.loads(reference.read_text())
         if not matches:
             raise SystemExit(f"Mismatch in {reference.name}")
-    print("All seven exact records match, including 208 corresponding principal minors.")
+    print(f"All {len(records)} exact records match, including 208 corresponding principal minors.")
 
 
 if __name__ == "__main__":

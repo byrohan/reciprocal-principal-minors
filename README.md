@@ -28,14 +28,28 @@ The published Appendix B drops a rank condition, applies induction to principal 
 
 ## Reproduce
 
-With Git, Elan, Python 3.9 or later, Ruby with `matrix` and `json`, Bash and GNU `timeout` on the path, run from the repository root:
+Clone the repository, or download and extract the source ZIP from GitHub’s **Code** menu. While the repository is private, use a GitHub account with read access for either route.
+
+```sh
+git clone https://github.com/byrohan/reciprocal-principal-minors.git
+cd reciprocal-principal-minors
+```
+
+**To check the matrices first**, run the two Python scripts below. They use Python 3.9+ and its standard library. The first reconstructs the four real examples, including the pair printed above, and checks 192 labeled minor equalities. The second checks 16 complex equalities and both diagonal-similarity obstructions. The real subset-by-subset results are in `verification/run/python/all-minors.csv`.
+
+```sh
+python3 -B scripts/exact_real.py verification/run/python
+python3 -B scripts/exact_complex.py verification/run/python
+```
+
+**For the full verification**, install the [prerequisites](docs/reproduction.md#first-run) and run:
 
 ```sh
 lake exe cache get
 ./scripts/verify.sh
 ```
 
-The first command obtains the locked Mathlib artifacts. The second builds the Lean project, checks each theorem’s axioms, runs the exact scripts and replays the pinned Left to Solve checker locally. It writes fresh results under `verification/run/`. To run just the arithmetic, use `python3 -B scripts/check_exact.py`. None of these commands requires a hosting account or submits a proof. [Instructions for cached/offline use, macOS and PDF regeneration](docs/reproduction.md)
+A successful run ends with `Verification receipt matches this release.` The fresh result is `verification/run/receipt.json`. It covers the Lean proof build, six axiom reports, the independent Python and Ruby checks and the official checker’s local verdict. To inspect the same process on a clean Ubuntu runner, open a successful run and expand its verification step. [GitHub Actions runs](https://github.com/byrohan/reciprocal-principal-minors/actions/workflows/verify.yml) · [Using an existing cache, running offline and rebuilding the paper](docs/reproduction.md)
 
 ## Attribution and reuse
 

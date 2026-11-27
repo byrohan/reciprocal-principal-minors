@@ -4,12 +4,14 @@ Run commands from the repository root. The default Lake target builds all four L
 
 ## First run
 
-Install Git, [Elan](https://github.com/leanprover/elan), Python 3.9+, Bash, Ruby with its `matrix` and `json` libraries, and GNU Coreutils’ `timeout`. On macOS, a Coreutils installation may name this executable `gtimeout`. Put the Coreutils `gnubin` directory on your shell’s PATH so that the upstream checker can call it as `timeout`. Confirm with `command -v timeout`. Python uses its standard library. Lean and Mathlib downloads can take several gigabytes on a new machine.
+Start with a clone or an extracted GitHub source ZIP and change into the directory containing `lean-toolchain`. Install Git, [Elan](https://github.com/leanprover/elan), Python 3.9+, Bash, Ruby with its `matrix` and `json` libraries, and GNU Coreutils’ `timeout`. On macOS, a Coreutils installation may name this executable `gtimeout`. Put the Coreutils `gnubin` directory on your shell’s PATH so that the upstream checker can call it as `timeout`. Confirm with `command -v timeout`. Check that `lake --version` selects the repository toolchain and that `ruby -rmatrix -rjson -e 'puts RUBY_VERSION'` prints your Ruby version. Python uses its standard library. Lean and Mathlib downloads can take several gigabytes on a new machine.
 
 ```sh
 lake exe cache get
 ./scripts/verify.sh
 ```
+
+Success ends with `Verification receipt matches this release.` The independently generated `verification/run/receipt.json` then matches the published `verification/release.json`. On macOS or Linux, `cmp verification/run/receipt.json verification/release.json` provides a separate byte-level comparison and exits silently on success.
 
 The lockfile pins Mathlib and its eight transitive packages. The verifier checks each Git revision, tracked source cleanliness, the active Lean version and the official checker target. Expected wall time depends primarily on downloading the Mathlib cache. The numerical scripts use integers, rationals and exact Gaussian arithmetic.
 
@@ -40,6 +42,8 @@ The verifier rebuilds this project’s own Lean modules in the checkout. The pac
 |---|---|
 | `lake build` | Compiles every release Lean module. |
 | `python3 scripts/audit_axioms.py` | After the build, collects and checks six transitive axiom reports. |
+| `python3 -B scripts/exact_real.py verification/run/python` | Uses only Python to reconstruct the four real examples, including the README pair, and write the labeled minor table. |
+| `python3 -B scripts/exact_complex.py verification/run/python` | Uses only Python to check the four-dimensional complex example. |
 | `python3 -B scripts/check_exact.py` | Runs the three Python reproductions, the bounded four-dimensional regression, and two independent Ruby checks. Compares all seven numerical records. |
 | `bash scripts/official_checker.sh` | Stages the real target and disproof, checks their archived SHA-256 hashes, and runs the pinned official checker. |
 | `./scripts/build_paper.sh` | Prints the editable HTML to the paper PDF using a local Chromium or Chrome executable. Set `CHROME_BIN` when it is outside PATH. |
