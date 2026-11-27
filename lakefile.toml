@@ -1,0 +1,11 @@
+name = "reciprocal_minors"
+version = "1.0.0"
+defaultTargets = ["ReciprocalMinors"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
+
+[[lean_lib]]
+name = "ReciprocalMinors"

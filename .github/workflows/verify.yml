@@ -1,0 +1,38 @@
+name: Verify counterexamples
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 80
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install pinned Elan
+        shell: bash
+        working-directory: ${{ runner.temp }}
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --output elan.tar.gz https://github.com/leanprover/elan/releases/download/v4.2.1/elan-x86_64-unknown-linux-gnu.tar.gz
+          echo '4e717523217af592fa2d7b9c479410a31816c065d66ccbf0c2149337cfec0f5c  elan.tar.gz' | sha256sum --check
+          tar -xzf elan.tar.gz elan-init
+          ./elan-init -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Check arithmetic runtime
+        run: |
+          python3 --version
+          ruby -rmatrix -rjson -e 'puts RUBY_DESCRIPTION'
+          timeout --version
+      - name: Obtain pinned Mathlib cache
+        run: lake exe cache get
+      - name: Build, audit axioms, replay arithmetic and run official checker
+        run: ./scripts/verify.sh

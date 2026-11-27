@@ -1,0 +1,101 @@
+{
+  "axioms": {
+    "OMA.disproof": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "ReciprocalFive.certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "ReciprocalFour.certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "ReciprocalFour.laplace_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "ReciprocalMinorExample.dense_certificate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "ReciprocalMinorExample.laplace_correct": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "bounded_regression": {
+    "direct_first": 8032,
+    "enumerated": 531441,
+    "irreducible_with_vanishing_odd_minors": 11616,
+    "transpose_only": 3584
+  },
+  "labeled_minor_equalities": {
+    "complex": 16,
+    "real": 192
+  },
+  "lean_toolchain": "leanprover/lean4:v4.33.1",
+  "official_checker": {
+    "proof": {
+      "log": "'OMA.disproof' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "polarity": "disproof",
+      "reason": "kernel accepted; axioms within propext, Classical.choice, Quot.sound",
+      "theorem": "OMA.disproof",
+      "verdict": "accepted"
+    },
+    "statement": "accepted",
+    "statement_requires_semantic_review": true
+  },
+  "package_revisions": {
+    "Cli": "6130a47896ce867c6a4a55373441e59e565bad0f",
+    "LeanSearchClient": "5f4d51b81cbd3f6b32b156bfad9056621a040404",
+    "Qq": "92c15be17b7caf78c2ad767ec40f89052d908d81",
+    "aesop": "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e",
+    "batteries": "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d",
+    "importGraph": "16f02aa7642864af59f1ff0e384a015994db9118",
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "plausible": "b7eb3304aeae834b12dda98993a37f6a41f6f0bb",
+    "proofwidgets": "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957"
+  },
+  "source_sha256": {
+    ".github/workflows/verify.yml": "4d7478d9e1a4551699aa47ed44fd93f48a1251132b5c98804298f89e61b9264b",
+    "ReciprocalMinors.lean": "55243f69863952ba53354a729d1da288a56a72d2b7df1eda613b88bfe0b78775",
+    "ReciprocalMinors/Five.lean": "96fd5fb967006508b2f6156bb3a68770ec43b866339e52a7d02f389f742f2485",
+    "ReciprocalMinors/Four.lean": "74ab38610cf11d62feba9ec07ce351f0f554c3b332cc48855d5dced5309cbd79",
+    "ReciprocalMinors/Six.lean": "c454694f510d9b4e3fb0726a131e1eaac0984e4ac388426fcf4f77251d059934",
+    "ReciprocalMinors/Statement.lean": "9af73a03c6acca3febdfaec9522745cf3502506dfb043f935999ad934f095b06",
+    "lake-manifest.json": "83c43ab20acd285d650076ce348fd0a3365d8b741229bca94e7cba46ff1e7c7c",
+    "lakefile.toml": "e5240f9ca508e80074c5805b9486882f88db61af6ad7511c6df18fbdbe7634eb",
+    "lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "paper/manuscript.html": "6677e3b3aa6f158ae5d3344297b72ddcc124146503bdf766c36544fd43bc45b2",
+    "scripts/audit_axioms.py": "01d00061cef16e9c32d0429e600f5499280d877329576ef4bfd0bf3baf10a7c1",
+    "scripts/build_paper.sh": "85ec3cb00425729b3293244a5abc2ce871fd8de0b23cf7f6b695ec61bcb5e7ec",
+    "scripts/check_exact.py": "01b1900e96ed6a0af5f8e1d530fab22dfefb8c1b4c29c1ec901b513d21c756dd",
+    "scripts/check_pins.py": "657b54b184e6ce0b7bcc8e1b9ac5b10431a72016ee09b0c447a659aa41ac1dbd",
+    "scripts/check_small_orders.py": "f163811ed0187e025daec8374744f9c59db66158ae3a5ebf2b460651ab1fd863",
+    "scripts/exact_complex.py": "632be597cd9b9524e4d7860e0430502cd1d173bcadf475f8ae4c6a3b3e22aeba",
+    "scripts/exact_real.py": "f7b9c7b85544511bb32b71ff30df13b6529bbe7231255a1bf08264433ede11ed",
+    "scripts/independent.rb": "aee510e3742e1d519e7431b690c4fab0492d07a6112805010fd3b2af0a44bed3",
+    "scripts/journal_equations.rb": "94db19ba302611aea0e63010911ebd8ebdeb0eed0787d8a26bca784ddc8c397a",
+    "scripts/official_checker.sh": "8181de7247d271fbb58f8ba055ff020aea45c285e0d704426dd185ac60dc6d26",
+    "scripts/original_six.py": "96a1df093a4a3219a27a27fe29f34fb10a49684334d4d3f589b53cde78e418ab",
+    "scripts/receipt.py": "8cc56368d8c61b0edabad6de11cb0a1ead506fdd50ba6fe7c965f6354a63ffdb",
+    "scripts/stage_checker.py": "09b57f22f60beb32251367dbb33b6a13af8781f0df6037f5b681ad9976355a46",
+    "scripts/verify.sh": "750c43056be0b85f699fc973701b074ebefe355785abd37b556ab6711a5d236f",
+    "verification/Axioms.lean": "892f839356bf4a658ae4cb03fd8485bc1c51ccdfe57fa60368099c359df29c99",
+    "verification/expected/all-minors.csv": "577a7e3128744b3d8e0445834d73341f83327b48319bbdaef1fe825cc1e7809d",
+    "verification/expected/certificates.json": "739e1c8ef9249b25d832ea2b5951425d5209a26049218126447d747a30d64873",
+    "verification/expected/four-complex.json": "4c62773ac625e8adbf6b1c8c25a0e2bda1fcc0598704be57d366351126618631",
+    "verification/expected/independent.json": "7eba57e7c59ece27159d3deba447817529a5822284dab0d9ea2a9c44005d5ece",
+    "verification/expected/journal-equations.json": "0c22aee089ddaedc2d985363eea03b442332ce90dc1a663d4895ab61cb735c90",
+    "verification/expected/legacy-exact.json": "f46c7e50e9ae42bbb0900db1ac2f968df6ef67f962e8ce05ed806fad7583da3e",
+    "verification/expected/small-order-search.json": "8501b6ed72f7cbf30d1097ff6d9bc06874bf14c9b638881efea52ac1d5c82320"
+  }
+}

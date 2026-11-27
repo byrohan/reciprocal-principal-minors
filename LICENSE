@@ -1,0 +1,12 @@
+The Lean and Python sources, Ruby scripts, build configuration, verification
+data, and continuous integration workflow are available under the MIT License.
+See LICENSES/MIT.txt.
+
+The original manuscript (PDF and HTML), README, reports and other written
+documentation are available under Creative Commons Attribution 4.0
+International. See LICENSES/CC-BY-4.0.txt. Use “Reciprocal Principal Minors
+Project” as the attribution name. CITATION.cff supplies a suggested citation.
+
+These licenses apply to this project's contributions to the extent rights
+exist. Third-party publications are cited by reference. External software
+and libraries retain their original licenses.

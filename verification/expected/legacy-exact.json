@@ -1,0 +1,43 @@
+{
+  "dimension": 6,
+  "determinant": 1,
+  "two_sided_inverse": true,
+  "principal_subsets_checked": 64,
+  "directed_Hamilton_cycle": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    0
+  ],
+  "A01_B01": [
+    2,
+    0
+  ],
+  "cycle_products_AT_B": [
+    8,
+    16
+  ],
+  "odd_principal_minors_of_H_checked": 32,
+  "det_I_plus_tH_low_to_high": [
+    1,
+    0,
+    3,
+    0,
+    -1,
+    0,
+    -1
+  ],
+  "nonzero_entries_at_t_one_half": 36,
+  "dense_principal_minors": [
+    "43/107",
+    "45/107",
+    "51/107",
+    "53/107",
+    "1",
+    "117/107"
+  ],
+  "deleted_product_00": 5
+}

@@ -1,0 +1,5 @@
+.lake/
+verification/run/
+__pycache__/
+*.pyc
+.DS_Store

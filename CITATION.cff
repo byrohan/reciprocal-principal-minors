@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite this research and verification package when using its counterexamples, formal proofs, or scripts."
+title: "Reciprocal principal minors and the limits of diagonal similarity"
+type: software
+version: "1.0.0"
+authors:
+  - name: "Reciprocal Principal Minors Project"
+license:
+  - MIT
+  - CC-BY-4.0
+abstract: "Counterexamples to a real inverse-pair conjecture and to the complex formulation in Theorem 7 of Schlecht and Habets. Includes the manuscript, Lean 4 proofs, exact arithmetic checks, and a claim-by-claim verification report."
+keywords:
+  - principal minors
+  - diagonal similarity
+  - counterexamples
+  - Lean 4
+  - feedback delay networks
